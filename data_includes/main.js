@@ -35,14 +35,9 @@ Template( variable =>
         newImage("stimuli",variable.Face_pic)
             .size(300,250)
     ,
-        newCanvas(450,100)
+        newCanvas("face", 450, 100)
             .add(   170 , 0 , getImage("stimuli") )
             .print()
-        ,
-    
-    
-        newAudio(variable.Audio)
-        .play()
     ,
         newText("two", variable.Text_two)
         .settings.css("font-size", "600%")
@@ -50,20 +45,23 @@ Template( variable =>
         newText("one", variable.Text_one)
         .settings.css("font-size", "600%")
     ,
-        newCanvas(650,200)
+        newCanvas("words", 650, 200)
         .add(   0 , 300 , getText("one") )
         .add( 470 , 300 , getText("two") )
         .print()
     ,
-        
+        newAudio(variable.Audio)
+        .play()
+    ,
         newSelector()
             .add( getText("one") , getText("two") )
             .keys(          "F"    ,          "J"   )
             .log()
             .wait()
-            
-        ,
-        newTimer(500)
+    ,
+        newText("<p>Press <strong>F</strong> for left, or <strong>J</strong> for right.</p>")
+    ,
+        newTimer("other_timer", 500)
             .start()
             .wait()
       )
