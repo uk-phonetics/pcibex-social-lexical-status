@@ -37,7 +37,7 @@ Template( variable =>
             .size(300,250)
     ,
         newCanvas(450,100)
-            .add(   100 , 0 , getImage("stimuli") )
+            .add(   170 , 0 , getImage("stimuli") )
             .print()
         ,
     
@@ -45,23 +45,22 @@ Template( variable =>
         newAudio(variable.Audio)
         .play()
     ,
-        newImage("two", variable.Picture_two)
-        .size(200,100)
+        newText("two", variable.Text_two)
+        .settings.css("font-size", "600%")
     ,
-        newImage("one", variable.Picture_one)
-        .size(200,100)
+        newText("one", variable.Text_one)
+        .settings.css("font-size", "600%")
     ,
-        newCanvas(450,200)
-        .add(   25 , 200 , getImage("two") )
-        .add( 315 , 200 , getImage("one") )
+        newCanvas(650,200)
+        .add(   0 , 300 , getText("one") )
+        .add( 470 , 300 , getText("two") )
         .print()
     ,
         
         newSelector()
-            .add( getImage("two") , getImage("one") )
-            .keys(          "F"    ,          "J"   )   
+            .add( getText("one") , getText("two") )
+            .keys(          "F"    ,          "J"   )
             .log()
-            .once()
             .wait()
             
         ,
