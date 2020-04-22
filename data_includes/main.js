@@ -1,7 +1,3 @@
-// This is a simple demo script, feel free to edit or delete it
-// Find a tutorial and the list of availalbe elements at:
-// https://www.pcibex.net/documentation/
-
 PennController.ResetPrefix(null) // Shorten command names (keep this line here)
 
 // Show the 'intro' trial first, then all the 'experiment' trials in a random order
@@ -18,14 +14,17 @@ newTrial( "welcome" ,
     ,
     newText("<p>Press the <strong>F</strong> key for the word on the left, or the <strong>J</strong> key for the word on the right.</p>")
     ,
-    newText("<p>Please enter your ID and then click the button below to start the experiment.</p>")
+    newText("<p>Please click the button below to start the experiment.</p>")
     ,
     newButton("Start")
         .print()
         .wait()
+    ,
+    newVar("ID")
+        .global()
+        .set( GetURLParameter("id") )
 )
-.log( "ID" , GetURLParameter( "id" ))
-
+.log( "ID" , getVar("ID") )
 
 Template( variable =>
     newTrial("experiment" ,
@@ -68,11 +67,10 @@ Template( variable =>
             .start()
             .wait()
       )
-    .log( "ID"     , getVar("ID")    )
+    .log( "ID" , getVar("ID"))
     .log( "VC"   , variable.VC   )
     .log( "Step" , variable.Step )
     .log( "Face"  , variable.Face  )
-
 )
 
 SendResults( "send" )
