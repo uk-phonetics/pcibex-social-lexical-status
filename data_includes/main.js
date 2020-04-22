@@ -45,9 +45,13 @@ Template( variable =>
         newText("one", variable.Text_one)
         .settings.css("font-size", "600%")
     ,
+        newText("instructions", "<p>Press <strong>F</strong> for left, or <strong>J</strong> for right.</p>")
+        .settings.css("font-size", "150%")
+    ,
         newCanvas("words", 650, 200)
-        .add(   0 , 300 , getText("one") )
-        .add( 470 , 300 , getText("two") )
+        .add(   0, 300, getText("one"))
+        .add( 470, 300, getText("two"))
+        .add( 235, 500, getText("instructions"))
         .print()
     ,
         newAudio(variable.Audio)
@@ -57,12 +61,6 @@ Template( variable =>
             .add( getText("one") , getText("two") )
             .keys(          "F"    ,          "J"   )
             .log()
-            .wait()
-    ,
-        newText("<p>Press <strong>F</strong> for left, or <strong>J</strong> for right.</p>")
-    ,
-        newTimer("other_timer", 500)
-            .start()
             .wait()
       )
     .log( "ID" , getVar("ID"))
