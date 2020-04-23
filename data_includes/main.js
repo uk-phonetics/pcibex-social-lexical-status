@@ -8,6 +8,10 @@ newTrial( "welcome" ,
     defaultText
         .print()
     ,
+    newVar("ID")
+        .global()
+        .set( GetURLParameter("id"))
+    ,
     newText("<p>Welcome!</p>")
     ,
     newText("<p>In this experiment, you will hear a sound and decide if it sounds more like one word or another.</p>")
@@ -19,10 +23,6 @@ newTrial( "welcome" ,
     newButton("Start")
         .print()
         .wait()
-    ,
-    newVar("ID")
-        .global()
-        .set( GetURLParameter("id") )
 )
 .log( "ID" , getVar("ID") )
 
@@ -54,10 +54,13 @@ Template( variable =>
         .add( 235, 500, getText("instructions"))
         .print()
     ,
-        newAudio(variable.Audio)
+        newAudio("wav", variable.Audio)
+        .once()
+        .print()
         .play()
     ,
         newSelector()
+            .disableClicks()
             .add( getText("one") , getText("two") )
             .keys(          "F"    ,          "J"   )
             .log()
@@ -72,6 +75,8 @@ Template( variable =>
 SendResults( "send" )
 
 newTrial( "final" ,
+    exitFullscreen()
+    ,
     newText("<p>Thank you for your participation!</p>")
         .print()
     ,
