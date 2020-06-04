@@ -70,6 +70,7 @@ Template( variable =>
     .log( "VC"   , variable.VC   )
     .log( "Step" , variable.Step )
     .log( "Face"  , variable.Face  )
+    .log( "Group" , Group.variable  )
 )
 
 SendResults( "send" )
